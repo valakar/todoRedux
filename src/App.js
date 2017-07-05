@@ -12,7 +12,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h2>Welcome to React Redux Todo list</h2>
                 </div>
-                <Todo todos={store.getState().todos}/>
+                <Todo {...store.getState()}/>
             </div>
         );
     }
