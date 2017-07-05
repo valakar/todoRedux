@@ -6,6 +6,7 @@ import { VISABILITY_ACTIONS } from './todos/actions/visabilityFilter';
 import FilterLink from './todos/FilterLink';
 import store from './todos/store/Store';
 import Todos from './todos/Todos';
+import AddTodo from './todos/AddTodo';
 
 const getVisibleTodos = (todos,
                          filter) => {
@@ -40,19 +41,13 @@ class App extends Component {
                     <h2>Welcome to React Redux Todo list</h2>
                 </div>
 
-                <input type="text" ref={node => {
-                    this.input = node;
-                }}/>
-                <button onClick={() => {
+                <AddTodo onAddClick={text => {
                     store.dispatch({
                         type: TODO_ACTIONS.ADD_TODO,
-                        text: this.input.value,
                         id: nextTodoId++,
-                        completed: false
+                        text
                     });
-                    this.input.value = '';
-                }}>add todo
-                </button>
+                }}/>
 
                 <Todos todos={visibleTodos}
                        onTodoClick={id => {
