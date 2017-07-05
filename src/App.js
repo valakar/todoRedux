@@ -3,10 +3,10 @@ import './App.css';
 import logo from './logo.svg';
 import { TODO_ACTIONS } from './todos/actions/todo';
 import { VISABILITY_ACTIONS } from './todos/actions/visabilityFilter';
-import FilterLink from './todos/FilterLink';
+import AddTodo from './todos/AddTodo';
+import Filter from './todos/Filter';
 import store from './todos/store/Store';
 import Todos from './todos/Todos';
-import AddTodo from './todos/AddTodo';
 
 const getVisibleTodos = (todos,
                          filter) => {
@@ -30,10 +30,6 @@ class App extends Component {
             visabilityFilter
         } = this.props;
 
-        let visibleTodos = getVisibleTodos(
-            todos,
-            visabilityFilter
-        );
         return (
             <div className="App">
                 <div className="App-header">
@@ -49,7 +45,10 @@ class App extends Component {
                     });
                 }}/>
 
-                <Todos todos={visibleTodos}
+                <Todos todos={getVisibleTodos(
+                    todos,
+                    visabilityFilter
+                )}
                        onTodoClick={id => {
                            store.dispatch({
                                type: TODO_ACTIONS.TOGGLE_TODO,
@@ -58,24 +57,13 @@ class App extends Component {
                        }}>
                 </Todos>
 
-                <p>
-                    Show: {' '}
-                    <FilterLink
-                        filter={VISABILITY_ACTIONS.FILTERS.VISIBLE_ALL}
-                        currentFilter={visabilityFilter}>
-                        All
-                    </FilterLink> {' '}
-                    <FilterLink
-                        filter={VISABILITY_ACTIONS.FILTERS.COMPLETED}
-                        currentFilter={visabilityFilter}>
-                        Completed
-                    </FilterLink> {' '}
-                    <FilterLink
-                        filter={VISABILITY_ACTIONS.FILTERS.NOT_COMPLETED}
-                        currentFilter={visabilityFilter}>
-                        Active
-                    </FilterLink>
-                </p>
+                <Filter currentFilter={visabilityFilter}
+                        onFilterClick={filter => {
+                            store.dispatch({
+                                type: VISABILITY_ACTIONS.SET_VISABILITY_FILTER,
+                                filter
+                            });
+                        }}/>
             </div>
         );
     }
