@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import { TODO_ACTIONS } from './todos/actions/todo';
 import { VISABILITY_ACTIONS } from './todos/actions/visabilityFilter';
 import AddTodo from './todos/AddTodo';
-import Filter from './todos/Filter';
+import Filter from './todos/Filter/Filter';
 import store from './todos/store/Store';
 import Todos from './todos/Todos';
 

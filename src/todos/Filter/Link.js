@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 
-class FilterLink extends Component {
+class Link extends Component {
     render() {
         const {
-            filter,
-            currentFilter,
+            active,
             children,
             onClick
         } = this.props;
 
-        if (filter === currentFilter) {
+        if (active) {
             return (<span>{children}</span>)
         }
         return (
             <a href="#"
-            onClick={e => {
-                e.preventDefault();
-                onClick(filter);
-            }}>
+               onClick={e => {
+                   e.preventDefault();
+                   onClick();
+               }}>
                 {children}
             </a>
         );
     }
 }
 
-export default FilterLink;
+export default Link;
