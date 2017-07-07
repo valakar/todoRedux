@@ -6,7 +6,7 @@ import { VISABILITY_ACTIONS } from './todos/actions/visabilityFilter';
 import AddTodo from './todos/AddTodo';
 import Filter from './todos/Filter/Filter';
 import store from './todos/store/Store';
-import Todos from './todos/Todos';
+import TodoList from './todos/TodoList';
 
 const getVisibleTodos = (todos,
                          filter) => {
@@ -45,17 +45,17 @@ class App extends Component {
                     });
                 }}/>
 
-                <Todos todos={getVisibleTodos(
+                <TodoList todos={getVisibleTodos(
                     todos,
                     visabilityFilter
                 )}
-                       onTodoClick={id => {
+                          onTodoClick={id => {
                            store.dispatch({
                                type: TODO_ACTIONS.TOGGLE_TODO,
                                id
                            })
                        }}>
-                </Todos>
+                </TodoList>
 
                 <Filter currentFilter={visabilityFilter}
                         onFilterClick={filter => {

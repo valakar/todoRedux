@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
 
-class Todos extends Component {
+class TodoList extends Component {
     render() {
         const {
             todos,
@@ -20,4 +20,4 @@ class Todos extends Component {
     }
 }
 
-export default Todos;
+export default TodoList;
