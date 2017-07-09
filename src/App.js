@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
-import { TODO_ACTIONS } from './todos/actions/todo';
 import AddTodo from './todos/AddTodo';
 import Filter from './todos/Filter/Filter';
-import store from './todos/store/Store';
-import VisibleTodoList from './todos/VisibleTodoList';
+import VisibleTodoList from './todos/VisibleTodoList/VisibleTodoList';
 
-let nextTodoId = 0;
 class App extends Component {
     render() {
         return (
@@ -17,16 +14,8 @@ class App extends Component {
                     <h2>Welcome to React Redux Todo list</h2>
                 </div>
 
-                <AddTodo onAddClick={text => {
-                    store.dispatch({
-                        type: TODO_ACTIONS.ADD_TODO,
-                        id: nextTodoId++,
-                        text
-                    });
-                }}/>
-
-                <VisibleTodoList/>
-
+                <AddTodo />
+                <VisibleTodoList />
                 <Filter />
             </div>
         );

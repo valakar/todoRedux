@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import store from './store/Store';
+import store from '../store/Store';
 import TodoList from './TodoList';
-import { TODO_ACTIONS, VISABILITY_ACTIONS } from './actions';
+import { TODO_ACTIONS, VISABILITY_ACTIONS } from '../actions/index';
 
 const getVisibleTodos = (todos,
                          filter) => {

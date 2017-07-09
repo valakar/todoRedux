@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { TODO_ACTIONS } from './actions/todo';
+import store from './store/Store';
+
+let nextTodoId = 0;
 
 class AddTodo extends Component {
     render() {
-        const {
-            onAddClick,
-        } = this.props;
         let input;
         return (
             <div>
@@ -12,7 +13,11 @@ class AddTodo extends Component {
                     input = node;
                 }}/>
                 <button onClick={() => {
-                    onAddClick(input.value);
+                    store.dispatch({
+                        type: TODO_ACTIONS.ADD_TODO,
+                        id: nextTodoId++,
+                        text: input.value
+                    });
                     input.value = '';
                 }}>add todo
                 </button>
