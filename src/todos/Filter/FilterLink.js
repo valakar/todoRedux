@@ -5,12 +5,12 @@ import { VISABILITY_ACTIONS } from '../actions/visabilityFilter';
 
 class FilterLink extends Component {
     componentDidMount() {
-        console.log('componentDidMount');
+        console.log('FilterLink componentDidMount');
         this.unsubscribe = store.subscribe(() => this.forceUpdate())
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount');
+        console.log('FilterLink componentWillUnmount');
         this.unsubscribe();
     }
 

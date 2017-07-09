@@ -2,34 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
 import { TODO_ACTIONS } from './todos/actions/todo';
-import { VISABILITY_ACTIONS } from './todos/actions/visabilityFilter';
 import AddTodo from './todos/AddTodo';
 import Filter from './todos/Filter/Filter';
 import store from './todos/store/Store';
-import TodoList from './todos/TodoList';
-
-const getVisibleTodos = (todos,
-                         filter) => {
-    switch (filter) {
-        case VISABILITY_ACTIONS.FILTERS.VISIBLE_ALL:
-            return todos;
-        case VISABILITY_ACTIONS.FILTERS.COMPLETED:
-            return todos.filter(todo => todo.completed);
-        case VISABILITY_ACTIONS.FILTERS.NOT_COMPLETED:
-            return todos.filter(todo => !todo.completed);
-        default:
-            return todos;
-    }
-};
+import VisibleTodoList from './todos/VisibleTodoList';
 
 let nextTodoId = 0;
 class App extends Component {
     render() {
-        const {
-            todos,
-            visabilityFilter
-        } = this.props;
-
         return (
             <div className="App">
                 <div className="App-header">
@@ -45,25 +25,9 @@ class App extends Component {
                     });
                 }}/>
 
-                <TodoList todos={getVisibleTodos(
-                    todos,
-                    visabilityFilter
-                )}
-                          onTodoClick={id => {
-                           store.dispatch({
-                               type: TODO_ACTIONS.TOGGLE_TODO,
-                               id
-                           })
-                       }}>
-                </TodoList>
+                <VisibleTodoList/>
 
-                <Filter currentFilter={visabilityFilter}
-                        onFilterClick={filter => {
-                            store.dispatch({
-                                type: VISABILITY_ACTIONS.SET_VISABILITY_FILTER,
-                                filter
-                            });
-                        }}/>
+                <Filter />
             </div>
         );
     }
