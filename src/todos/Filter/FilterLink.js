@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import store from '../store/Store';
 import Link from './Link';
 import { VISABILITY_ACTIONS } from '../actions/visabilityFilter';
+import PropTypes from 'prop-types';
 
 class FilterLink extends Component {
     componentDidMount() {
+        const { store } = this.context;
         console.log('FilterLink componentDidMount');
         this.unsubscribe = store.subscribe(() => this.forceUpdate())
     }
@@ -15,6 +16,7 @@ class FilterLink extends Component {
     }
 
     render() {
+        const { store } = this.context;
         const { filter, children } = this.props;
         const { visabilityFilter } = store.getState();
 
@@ -31,5 +33,9 @@ class FilterLink extends Component {
         );
     }
 }
+
+FilterLink.contextTypes = {
+    store: PropTypes.object
+};
 
 export default FilterLink;

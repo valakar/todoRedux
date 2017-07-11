@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import store from '../store/Store';
 import TodoList from './TodoList';
 import { TODO_ACTIONS, VISABILITY_ACTIONS } from '../actions/index';
+import PropTypes from 'prop-types';
 
 const getVisibleTodos = (todos,
                          filter) => {
@@ -19,6 +19,7 @@ const getVisibleTodos = (todos,
 
 class VisibleTodoList extends Component {
     componentDidMount() {
+        const { store } = this.context;
         console.log('FilterLink componentDidMount');
         this.unsubscribe = store.subscribe(() => this.forceUpdate())
     }
@@ -29,6 +30,8 @@ class VisibleTodoList extends Component {
     }
 
     render() {
+        const { store } = this.context;
+
         const {
             visabilityFilter,
             todos
@@ -49,5 +52,9 @@ class VisibleTodoList extends Component {
         );
     }
 }
+
+VisibleTodoList.contextTypes = {
+    store: PropTypes.object
+};
 
 export default VisibleTodoList;

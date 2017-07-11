@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { TODO_ACTIONS } from './actions/todo';
-import store from './store/Store';
+import PropTypes from 'prop-types';
 
 let nextTodoId = 0;
 
 class AddTodo extends Component {
     render() {
+        const { store } = this.context;
         let input;
         return (
             <div>
@@ -25,5 +26,9 @@ class AddTodo extends Component {
         );
     }
 }
+
+AddTodo.contextTypes = {
+    store: PropTypes.object
+};
 
 export default AddTodo;
