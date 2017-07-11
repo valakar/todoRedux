@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
 import TodoList from './TodoList';
 import { TODO_ACTIONS, VISABILITY_ACTIONS } from '../actions/index';
-import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 
 const getVisibleTodos = (todos,
                          filter) => {
@@ -17,44 +16,29 @@ const getVisibleTodos = (todos,
     }
 };
 
-class VisibleTodoList extends Component {
-    componentDidMount() {
-        const { store } = this.context;
-        console.log('FilterLink componentDidMount');
-        this.unsubscribe = store.subscribe(() => this.forceUpdate())
+const mapStateToProps = (state) => {
+    return {
+        todos: getVisibleTodos(
+            state.todos,
+            state.visabilityFilter
+        )
     }
-
-    componentWillUnmount() {
-        console.log('FilterLink componentWillUnmount');
-        this.unsubscribe();
-    }
-
-    render() {
-        const { store } = this.context;
-
-        const {
-            visabilityFilter,
-            todos
-        } = store.getState();
-
-        return (
-            <TodoList todos={getVisibleTodos(
-                todos,
-                visabilityFilter
-            )}
-                      onTodoClick={id => {
-                          store.dispatch({
-                              type: TODO_ACTIONS.TOGGLE_TODO,
-                              id
-                          })
-                      }}>
-            </TodoList>
-        );
-    }
-}
-
-VisibleTodoList.contextTypes = {
-    store: PropTypes.object
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onTodoClick: id => {
+            dispatch({
+                type: TODO_ACTIONS.TOGGLE_TODO,
+                id
+            })
+        }
+    }
+};
+
+const VisibleTodoList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoList);
 
 export default VisibleTodoList;
