@@ -1,3 +1,7 @@
-export * from './todo';
-export * from './todos';
-export * from './visabilityFilter';
+import { combineReducers } from 'redux';
+import { todos } from './todos';
+import { visabilityFilter } from './visabilityFilter';
+
+export const reducer = combineReducers({
+    todos, visabilityFilter
+});

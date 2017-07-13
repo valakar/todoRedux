@@ -1,9 +1,14 @@
-import { combineReducers, createStore } from 'redux';
-import { todos } from '../reducers/todos';
-import { visabilityFilter } from '../reducers/visabilityFilter';
+import { createStore } from 'redux';
+import { reducer } from "../reducers";
 
-const store = createStore(combineReducers({
-    todos, visabilityFilter
-}));
+const persistedState = {
+    todos: [{
+        id: 0,
+        text: 'Hello world',
+        completed: false
+    }]
+};
+
+const store = createStore(reducer, persistedState);
 
 export default store;
