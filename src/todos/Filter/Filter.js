@@ -8,15 +8,15 @@ class Filter extends Component {
             <p>
                 Show: {' '}
                 <FilterLink
-                    filter={VISABILITY_ACTIONS.FILTERS.VISIBLE_ALL}>
+                    filter={VISABILITY_ACTIONS.ALL}>
                     All
                 </FilterLink> {' '}
                 <FilterLink
-                    filter={VISABILITY_ACTIONS.FILTERS.COMPLETED}>
+                    filter={VISABILITY_ACTIONS.COMPLETED}>
                     Completed
                 </FilterLink> {' '}
                 <FilterLink
-                    filter={VISABILITY_ACTIONS.FILTERS.NOT_COMPLETED}>
+                    filter={VISABILITY_ACTIONS.ACTIVE}>
                     Active
                 </FilterLink>
             </p>

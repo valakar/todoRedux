@@ -1,8 +1,5 @@
 export const VISABILITY_ACTIONS = {
-    SET_VISABILITY_FILTER: 'SET_VISABILITY_FILTER',
-    FILTERS: {
-        COMPLETED: 'COMPLETED',
-        VISIBLE_ALL: 'VISIBLE_ALL',
-        NOT_COMPLETED: 'NOT_COMPLETED',
-    }
+    COMPLETED: 'completed',
+    ALL: 'all',
+    ACTIVE: 'active',
 };

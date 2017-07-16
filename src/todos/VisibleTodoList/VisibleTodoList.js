@@ -6,11 +6,11 @@ import { toggleTodo } from "../ActionCreators/toggleTodo";
 const getVisibleTodos = (todos,
                          filter) => {
     switch (filter) {
-        case VISABILITY_ACTIONS.FILTERS.VISIBLE_ALL:
+        case VISABILITY_ACTIONS.ALL:
             return todos;
-        case VISABILITY_ACTIONS.FILTERS.COMPLETED:
+        case VISABILITY_ACTIONS.COMPLETED:
             return todos.filter(todo => todo.completed);
-        case VISABILITY_ACTIONS.FILTERS.NOT_COMPLETED:
+        case VISABILITY_ACTIONS.ACTIVE:
             return todos.filter(todo => !todo.completed);
         default:
             return todos;
